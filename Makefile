@@ -10,6 +10,7 @@ SRC =	 	main.c							\
 			src/amazed.c	\
 			src/parsing/parsing.c	\
 			src/parsing/check_commentary.c	\
+			src/room_recov.c	\
 
 SRCTEST = 	tests/test.c					\
 

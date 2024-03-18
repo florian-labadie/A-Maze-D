@@ -26,6 +26,8 @@ typedef struct matrix_s {
 } matrix_t;
 
 typedef struct amazed_s {
+    int nb_robot;
+    room_t *room;
     matrix_t *matrix;
 } amazed_t;
 
