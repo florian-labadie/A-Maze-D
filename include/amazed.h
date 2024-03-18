@@ -13,6 +13,13 @@
     #include "my.h"
     #include <stdio.h>
 
+typedef struct room_s {
+    char *name;
+    int x;
+    int y;
+    struct room_s *next;
+} room_t;
+
 typedef struct matrix_s {
     int **matrix;
     int rooms_number;
