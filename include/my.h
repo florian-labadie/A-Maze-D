@@ -13,8 +13,10 @@
     #define ERR -1
 
     #include "amazed.h"
+    #include "room.h"
 
     #include <stdlib.h>
+    #include <stdio.h>
     #include <stddef.h>
     #include <unistd.h>
     #include <fcntl.h>

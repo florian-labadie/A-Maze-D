@@ -10,15 +10,13 @@
     #define COMMENT_CHAR '#'
     #define COMMAND_STR "##"
 
-    #include "my.h"
-    #include <stdio.h>
+    #include "room.h"
 
-typedef struct room_s {
-    char *name;
-    int x;
-    int y;
-    struct room_s *next;
-} room_t;
+typedef enum recovery_s {
+    ROBOT,
+    ROOM,
+    TUNNEL
+} recovery_t;
 
 typedef struct matrix_s {
     int **matrix;
@@ -34,5 +32,6 @@ typedef struct amazed_s {
 int launch_amazed(void);
 int parse(amazed_t *amazed);
 void check_commentary(char **line);
+int add_room(room_t **room, char *arg, char status);
 
 #endif /* !AMAZED_H_ */
