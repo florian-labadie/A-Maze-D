@@ -9,5 +9,11 @@
 
 int launch_amazed(void)
 {
+    amazed_t *amazed = malloc(sizeof(amazed_t));
+
+    if (amazed == NULL)
+        return KO;
+    if (parse(amazed) == KO)
+        return KO;
     return OK;
 }

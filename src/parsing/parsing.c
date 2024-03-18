@@ -23,6 +23,7 @@ int parse(amazed_t *amazed)
     int ret = 0;
 
     while ((getline(&line, &len, stdin)) != ERR) {
+        my_putstr(line);
         check_commentary(&line);
         if (check_blankline(line) == OK)
             continue;
