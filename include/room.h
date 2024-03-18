@@ -8,6 +8,9 @@
 #ifndef ROOM_H_
     #define ROOM_H_
 
+    #define START_STR "##start"
+    #define END_STR "##end"
+
     #include "my.h"
 
 typedef enum room_status_s {

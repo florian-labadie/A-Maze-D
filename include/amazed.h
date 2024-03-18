@@ -8,7 +8,6 @@
 #ifndef AMAZED_H_
     #define AMAZED_H_
     #define COMMENT_CHAR '#'
-    #define COMMAND_STR "##"
 
     #include "room.h"
 

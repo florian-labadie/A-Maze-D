@@ -27,11 +27,17 @@ static int put_robot(amazed_t *amazed, char *recovery, char *line)
     return OK;
 }
 
-static int get_status(amazed_t *amazed, char *room, char *line)
+static int get_status(char *room, char *line)
 {
-    if (!amazed)
-        return KO;
-    return OK;
+    if (my_strcmp(line, START_STR) == 0) {
+        *room = START;
+        return OK;
+    }
+    if (my_strcmp(line, END_STR) == 0) {
+        *room = END;
+        return OK;
+    }
+    return KO;
 }
 
 int parse(amazed_t *amazed)
@@ -43,7 +49,7 @@ int parse(amazed_t *amazed)
 
     while ((getline(&line, &len, stdin)) != ERR) {
         check_commentary(&line);
-        if (rm_blankline(line) == OK || get_status(amazed, &room, line) == KO)
+        if (rm_blankline(line) == OK || get_status(&room, line) == OK)
             continue;
         if (recovery == ROBOT && put_robot(amazed, &recovery, line) == KO)
             return KO;
