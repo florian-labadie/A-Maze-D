@@ -42,5 +42,8 @@ char *my_strstr(char const *str, char const *needle);
 int my_arraylen(char const *const *array);
 void my_putarray(char const *const *array);
 char **my_arraydup(char const *const *array);
+int numeric(char c);
+int alphabetic(char c);
+int alpha_num(char c);
 
 #endif /* LIB_H_ */

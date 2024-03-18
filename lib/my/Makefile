@@ -27,6 +27,7 @@ SRC     =	my_putchar.c	\
 			my_arraylen.c	\
 			my_putarray.c	\
 			my_arraydup.c	\
+			letter_checker.c\
 
 OBJ     =	$(SRC:.c=.o)
 
