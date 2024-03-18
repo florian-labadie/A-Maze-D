@@ -12,13 +12,15 @@
     #define KO 84
     #define ERR -1
 
+    #include "amazed.h"
+
     #include <stdlib.h>
     #include <stddef.h>
-    #include <stdio.h>
     #include <unistd.h>
     #include <fcntl.h>
     #include <string.h>
-    #include <sys/stat.h>
+
+int error_handling(int argc, char const *const *argv);
 
 int my_putchar(char c);
 void my_put_errchar(char c);
@@ -40,7 +42,5 @@ char *my_strstr(char const *str, char const *needle);
 int my_arraylen(char const *const *array);
 void my_putarray(char const *const *array);
 char **my_arraydup(char const *const *array);
-
-int error_handling(int argc, char const *const *argv);
 
 #endif /* LIB_H_ */

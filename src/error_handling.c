@@ -9,9 +9,9 @@
 
 int error_handling(int argc, char const *const *argv)
 {
-    if (argc != 2)
+    if (argc > 1)
         return KO;
-    if (!argv || !argv[1])
+    if (!argv || !argv[0])
         return KO;
     return OK;
 }

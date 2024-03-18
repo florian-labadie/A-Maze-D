@@ -11,7 +11,7 @@ int main(int argc, char const *const *argv)
 {
     if (error_handling(argc, argv) == KO)
         return KO;
-    if (0)
+    if (launch_amazed())
         return KO;
     return OK;
 }
