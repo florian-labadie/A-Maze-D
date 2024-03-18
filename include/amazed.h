@@ -23,7 +23,7 @@ typedef struct amazed_s {
 } amazed_t;
 
 int launch_amazed(void);
-int parse(FILE *file, amazed_t *amazed);
+int parse(amazed_t *amazed);
 void check_commentary(char **line);
 
 #endif /* !AMAZED_H_ */

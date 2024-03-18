@@ -7,6 +7,9 @@
 
 SRC =	 	main.c							\
 			src/error_handling.c			\
+			src/amazed.c	\
+			src/parsing/parsing.c	\
+			src/parsing/check_commentary.c	\
 
 SRCTEST = 	tests/test.c					\
 
@@ -14,7 +17,7 @@ OBJ = $(SRC:.c=.o)
 
 OBJTEST = $(SRCTEST:.c=.o)
 
-NAME =		asm
+NAME =		amazed
 
 NAMETEST = 	unit_tests
 

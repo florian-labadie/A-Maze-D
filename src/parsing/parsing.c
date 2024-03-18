@@ -16,13 +16,13 @@ static int check_blankline(char *line)
     return OK;
 }
 
-int parse(FILE *file, amazed_t *amazed)
+int parse(amazed_t *amazed)
 {
     char *line = NULL;
     size_t len = 0;
     int ret = 0;
 
-    while ((getline(&line, &len, file)) != ERR) {
+    while ((getline(&line, &len, stdin)) != ERR) {
         check_commentary(&line);
         if (check_blankline(line) == OK)
             continue;
