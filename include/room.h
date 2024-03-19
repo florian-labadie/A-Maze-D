@@ -26,7 +26,6 @@ typedef struct room_s {
     int x;
     int y;
     room_status_t status;
-    bool display;
     struct room_s *next;
 } room_t;
 

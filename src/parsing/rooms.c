@@ -29,19 +29,18 @@ static int check_room(char *line)
     return my_strtok(NULL, " \t\n") != NULL ? KO : OK;
 }
 
-int add_room(room_t **room, char *arg, room_status_t status)
+static int add_room(room_t **room, char *line, room_status_t status)
 {
     if ((*room) == NULL) {
         (*room) = malloc(sizeof(room_t));
-        (*room)->name = my_strdup(my_strtok(arg, " \t\n"));
+        (*room)->name = my_strdup(my_strtok(line, " \t\n"));
         (*room)->x = my_getnbr(my_strtok(NULL, " \t\n"));
         (*room)->y = my_getnbr(my_strtok(NULL, " \t\n"));
         (*room)->status = status;
-        (*room)->display = true;
         (*room)->next = NULL;
         return OK;
     }
-    return add_room(&(*room)->next, arg, status);
+    return add_room(&(*room)->next, line, status);
 }
 
 int put_room(amazed_t *amazed, room_status_t *status, char *line)

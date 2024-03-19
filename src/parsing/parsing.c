@@ -48,19 +48,21 @@ static void change_recovery(char *line, recovery_t *recovery)
     if (*recovery != ROOM)
         return;
     for (int i = 0; line[i] != '\0'; i += 1) {
-        if (line[i] == '-')
+        if (line[i] == '-') {
             *recovery = TUNNEL;
+            return;
+        }
     }
 }
 
-static int put_datas(amazed_t *amazed, char *line, recovery_t recovery,
-    room_status_t room)
+static int put_datas(amazed_t *amazed, char *line, recovery_t *recovery,
+    room_status_t *room)
 {
-    if (recovery == TUNNEL && put_tunnel(amazed, line) == KO)
+    if (*recovery == TUNNEL && put_tunnel(amazed, line) == KO)
         return KO;
-    if (recovery == ROOM && put_room(amazed, &room, line) == KO)
+    if (*recovery == ROOM && put_room(amazed, room, line) == KO)
         return KO;
-    if (recovery == ROBOT && put_robot(amazed, line) == KO)
+    if (*recovery == ROBOT && put_robot(amazed, line) == KO)
         return KO;
     return OK;
 }
@@ -77,7 +79,7 @@ int parse(amazed_t *amazed)
         if (check_blankline(line) == OK || get_status(&room, line) == OK)
             continue;
         change_recovery(line, &recovery);
-        if (put_datas(amazed, line, recovery, room) == KO)
+        if (put_datas(amazed, line, &recovery, &room) == KO)
             return KO;
         if (display(amazed, &recovery) == KO)
             return KO;
