@@ -27,6 +27,32 @@ static int put_robot(amazed_t *amazed, char *recovery, char *line)
     return OK;
 }
 
+static int check_room(char *line)
+{
+    int count = 0;
+
+    for (int i = 0; line[i] != '\0'; i += 1) {
+        if (count == 0 && alpha_num(line[i]) == KO && line[i] != ' ')
+            return KO;
+        if ((count == 1 || count == 2) && numeric(line[i]) == KO && line[i]
+        != ' ')
+            return KO;
+        if (line[i] == ' ')
+            count += 1;
+    }
+    if (count < 2)
+        return KO;
+    return OK;
+}
+
+static int put_room(amazed_t *amazed, char *recovery, char *line)
+{
+    if (recovery == ROOM && check_room(line) == KO)
+        return KO;
+    add_room(&amazed->room, line, *recovery);
+    return OK;
+}
+
 static int get_status(char *room, char *line)
 {
     if (my_strcmp(line, START_STR) == 0) {
@@ -51,9 +77,12 @@ int parse(amazed_t *amazed)
         check_commentary(&line);
         if (rm_blankline(line) == OK || get_status(&room, line) == OK)
             continue;
+        room = NONE;
+        if (recovery == ROOM && put_room(amazed, &recovery, line) == KO) {
+            return KO;
+        }
         if (recovery == ROBOT && put_robot(amazed, &recovery, line) == KO)
             return KO;
-        room = NONE;
     }
     free(line);
     return OK;
