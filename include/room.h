@@ -20,7 +20,7 @@ typedef enum room_status_s {
 } room_status_t;
 
 typedef struct room_s {
-    char status;
+    room_status_t status;
     char *name;
     int x;
     int y;

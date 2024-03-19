@@ -13,7 +13,6 @@
     #define ERR -1
 
     #include "amazed.h"
-    #include "room.h"
 
     #include <stdlib.h>
     #include <stdio.h>
@@ -21,6 +20,7 @@
     #include <unistd.h>
     #include <fcntl.h>
     #include <string.h>
+    #include <stdbool.h>
 
 int error_handling(int argc, char const *const *argv);
 

@@ -7,13 +7,19 @@
 
 #include "my.h"
 
+static void init_amazed(amazed_t *amazed)
+{
+    amazed->nb_robot = 0;
+    amazed->room = NULL;
+    amazed->tunnels = NULL;
+}
+
 int launch_amazed(void)
 {
-    amazed_t *amazed = malloc(sizeof(amazed_t));
+    amazed_t amazed = {};
 
-    if (amazed == NULL)
-        return KO;
-    if (parse(amazed) == KO)
+    init_amazed(&amazed);
+    if (parse(&amazed) == KO)
         return KO;
     return OK;
 }

@@ -7,10 +7,12 @@
 
 SRC =	 	main.c							\
 			src/error_handling.c			\
-			src/amazed.c	\
-			src/parsing/parsing.c	\
+			src/amazed.c					\
+			src/display.c					\
+			src/parsing/parsing.c			\
 			src/parsing/check_commentary.c	\
-			src/room_recov.c	\
+			src/parsing/rooms.c				\
+			src/parsing/tunnels.c			\
 
 SRCTEST = 	tests/test.c					\
 

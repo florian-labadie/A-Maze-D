@@ -10,6 +10,7 @@
     #define COMMENT_CHAR '#'
 
     #include "room.h"
+    #include "tunnel.h"
 
 typedef enum recovery_s {
     ROBOT,
@@ -17,20 +18,16 @@ typedef enum recovery_s {
     TUNNEL
 } recovery_t;
 
-typedef struct matrix_s {
-    int **matrix;
-    int rooms_number;
-} matrix_t;
-
 typedef struct amazed_s {
     int nb_robot;
     room_t *room;
-    matrix_t *matrix;
+    tunnels_t *tunnels;
 } amazed_t;
 
 int launch_amazed(void);
 int parse(amazed_t *amazed);
 void check_commentary(char **line);
-int add_room(room_t **room, char *arg, char status);
+int put_room(amazed_t *amazed, room_status_t *status, char *line);
+int display(amazed_t *amazed, recovery_t *rec);
 
 #endif /* !AMAZED_H_ */
