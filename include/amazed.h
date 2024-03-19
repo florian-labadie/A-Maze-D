@@ -27,7 +27,8 @@ typedef struct amazed_s {
 int launch_amazed(void);
 int parse(amazed_t *amazed);
 void check_commentary(char **line);
-int put_room(amazed_t *amazed, room_status_t *status, char *line);
 int display(amazed_t *amazed, recovery_t *rec);
+int put_room(amazed_t *amazed, room_status_t *status, char *line);
+int put_tunnel(amazed_t *amazed, char *line);
 
 #endif /* !AMAZED_H_ */

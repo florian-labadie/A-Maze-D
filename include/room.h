@@ -13,6 +13,8 @@
 
     #include "my.h"
 
+    #include <stdbool.h>
+
 typedef enum room_status_s {
     NONE,
     START,
@@ -20,10 +22,11 @@ typedef enum room_status_s {
 } room_status_t;
 
 typedef struct room_s {
-    room_status_t status;
     char *name;
     int x;
     int y;
+    room_status_t status;
+    bool display;
     struct room_s *next;
 } room_t;
 

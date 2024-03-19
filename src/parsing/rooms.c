@@ -26,17 +26,18 @@ static int check_room(char *line)
         if (numeric(tmp[i]) == KO)
             return KO;
     }
-    return my_strtok(NULL, " \t\n") ? KO : OK;
+    return my_strtok(NULL, " \t\n") != NULL ? KO : OK;
 }
 
 int add_room(room_t **room, char *arg, room_status_t status)
 {
     if ((*room) == NULL) {
         (*room) = malloc(sizeof(room_t));
-        (*room)->status = status;
-        (*room)->name = my_strtok(arg, " \t\n");
+        (*room)->name = my_strdup(my_strtok(arg, " \t\n"));
         (*room)->x = my_getnbr(my_strtok(NULL, " \t\n"));
         (*room)->y = my_getnbr(my_strtok(NULL, " \t\n"));
+        (*room)->status = status;
+        (*room)->display = true;
         (*room)->next = NULL;
         return OK;
     }

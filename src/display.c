@@ -23,18 +23,23 @@ static int display_room(amazed_t *amazed)
 {
     if (amazed->room == NULL)
         return KO;
+    for (; amazed->room != NULL && amazed->room->display == false;
+        amazed->room = amazed->room->next);
     if (amazed->room->status == START) {
         my_putstr(START_STR);
+        my_putchar('\n');
     }
-    if (amazed->room->status == END)
+    if (amazed->room->status == END) {
         my_putstr(END_STR);
+        my_putchar('\n');
+    }
     my_putstr(amazed->room->name);
     my_putchar(' ');
     my_put_nbr(amazed->room->x);
     my_putchar(' ');
     my_put_nbr(amazed->room->y);
     my_putchar('\n');
-    amazed->tunnels->display = true;
+    amazed->room->display = false;
     return OK;
 }
 
@@ -42,6 +47,8 @@ static int display_tunnel(amazed_t *amazed)
 {
     if (amazed->tunnels == NULL)
         return KO;
+    for (; amazed->tunnels != NULL && amazed->tunnels->display == false;
+        amazed->tunnels = amazed->tunnels->next);
     if (amazed->tunnels->display == true)
         my_putstr("#tunnels\n");  
     my_putstr(amazed->tunnels->room1);

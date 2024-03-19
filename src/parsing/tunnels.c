@@ -26,13 +26,21 @@ static int check_tunnel(char *line)
 
 static void add_tunnel(tunnels_t **tunnels, char *line)
 {
-    return;
+    if ((*tunnels) == NULL) {
+        (*tunnels) = malloc(sizeof(tunnels_t));
+        (*tunnels)->room1 = my_strdup(my_strtok(line, "- \t\n"));
+        (*tunnels)->room2 = my_strdup(my_strtok(NULL, "- \t\n"));
+        (*tunnels)->display = true;
+        (*tunnels)->next = NULL;
+        return;
+    }
+    return add_tunnel(&(*tunnels)->next, line);
 }
 
-int put_tunnel(tunnels_t **tunnels, char *line)
+int put_tunnel(amazed_t *amazed, char *line)
 {
     if (check_tunnel(line) == KO)
         return KO;
-    add_tunnel(tunnels, line);
+    add_tunnel(&amazed->tunnels, line);
     return OK;
 }

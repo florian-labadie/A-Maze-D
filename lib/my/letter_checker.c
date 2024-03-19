@@ -23,7 +23,7 @@ int alphabetic(char c)
 
 int alpha_num(char c)
 {
-    if (alphabetic(c) && numeric(c))
+    if (alphabetic(c) == OK || numeric(c) == OK)
         return OK;
     return KO;
 }
