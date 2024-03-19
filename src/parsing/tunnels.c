@@ -12,13 +12,13 @@ static int check_tunnel(char *line)
     char *tmp = my_strdup(line);
 
     tmp = my_strtok(tmp, "-");
-    for (int i = 0; tmp[i] != '\0'; i += 1) {
-        if (tmp && alpha_num(tmp[i]) == KO)
+    for (int i = 0; i == 0 || tmp[i] != '\0'; i += 1) {
+        if (!tmp || alpha_num(tmp[i]) == KO)
             return KO;
     }
     tmp = my_strtok(NULL, " \t\n");
-    for (int i = 0; tmp[i] != '\0'; i += 1) {
-        if (tmp && alpha_num(tmp[i]) == KO)
+    for (int i = 0; i == 0 || tmp[i] != '\0'; i += 1) {
+        if (!tmp || alpha_num(tmp[i]) == KO)
             return KO;
     }
     return my_strtok(NULL, " \t\n") ? KO : OK;

@@ -12,18 +12,18 @@ static int check_room(char *line)
     char *tmp = my_strdup(line);
 
     tmp = my_strtok(tmp, " \t\n");
-    for (int i = 0; tmp[i] != '\0'; i += 1) {
-        if (alpha_num(tmp[i]) == KO)
+    for (int i = 0; i == 0 || tmp[i] != '\0'; i += 1) {
+        if (!tmp || alpha_num(tmp[i]) == KO)
             return KO;
     }
     tmp = my_strtok(NULL, " \t\n");
-    for (int i = 0; tmp[i] != '\0'; i += 1) {
-        if (numeric(tmp[i]) == KO)
+    for (int i = 0; i == 0 || tmp[i] != '\0'; i += 1) {
+        if (!tmp || numeric(tmp[i]) == KO)
             return KO;
     }
     tmp = my_strtok(NULL, " \t\n");
-    for (int i = 0; tmp[i] != '\0'; i += 1) {
-        if (numeric(tmp[i]) == KO)
+    for (int i = 0; i == 0 || tmp[i] != '\0'; i += 1) {
+        if (!tmp || numeric(tmp[i]) == KO)
             return KO;
     }
     return my_strtok(NULL, " \t\n") != NULL ? KO : OK;
