@@ -13,6 +13,8 @@
     #define ERR -1
 
     #include "amazed.h"
+    #include "proto.h"
+    #include "macro.h"
 
     #include <stdlib.h>
     #include <stdio.h>

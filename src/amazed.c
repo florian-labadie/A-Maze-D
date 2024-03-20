@@ -21,5 +21,7 @@ int launch_amazed(void)
     init_amazed(&amazed);
     if (parse(&amazed) == KO)
         return KO;
+    if (init_matrix(&amazed) == KO)
+        return KO;
     return OK;
 }

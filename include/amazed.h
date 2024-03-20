@@ -7,7 +7,6 @@
 
 #ifndef AMAZED_H_
     #define AMAZED_H_
-    #define COMMENT_CHAR '#'
 
     #include "room.h"
     #include "tunnel.h"
@@ -20,15 +19,11 @@ typedef enum recovery_s {
 
 typedef struct amazed_s {
     int nb_robot;
+
     room_t *room;
     tunnels_t *tunnels;
-} amazed_t;
 
-int launch_amazed(void);
-int parse(amazed_t *amazed);
-void check_commentary(char **line);
-int display(amazed_t *amazed, recovery_t *rec);
-int put_room(amazed_t *amazed, room_status_t *status, char *line);
-int put_tunnel(amazed_t *amazed, char *line);
+    matrix_t *matrix;
+} amazed_t;
 
 #endif /* !AMAZED_H_ */

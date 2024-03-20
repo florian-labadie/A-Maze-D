@@ -8,13 +8,16 @@
 #ifndef TUNNEL_H_
     #define TUNNEL_H_
 
-    #include "my.h"
-
     #include <stdbool.h>
 
 typedef struct matrix_s {
-    int **matrix;
+    char **names;
     int rooms_nbr;
+
+    int start_room;
+    int end_room;
+
+    int **matrix;
 } matrix_t;
 
 typedef struct tunnels_s {

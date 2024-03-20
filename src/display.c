@@ -23,7 +23,7 @@ static int display_room(amazed_t *amazed)
 {
     if (amazed->room == NULL)
         return KO;
-    for (; amazed->room->next != NULL; amazed->room = amazed->room->next);
+    for (room_t *tmp = amazed->room; tmp; tmp = tmp->next);
     if (amazed->room->status == START) {
         my_putstr(START_STR);
         my_putchar('\n');

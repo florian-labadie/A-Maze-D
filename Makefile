@@ -8,6 +8,7 @@
 SRC =	 	main.c							\
 			src/error_handling.c			\
 			src/amazed.c					\
+			src/matrix.c					\
 			src/display.c					\
 			src/parsing/parsing.c			\
 			src/parsing/check_commentary.c	\
