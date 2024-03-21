@@ -21,22 +21,24 @@ static int display_nb_robot(amazed_t *amazed, recovery_t *recovery)
 
 static int display_room(amazed_t *amazed)
 {
+    room_t *tmp = amazed->room;
+
     if (amazed->room == NULL)
         return KO;
-    for (room_t *tmp = amazed->room; tmp; tmp = tmp->next);
-    if (amazed->room->status == START) {
+    for (; tmp->next != NULL; tmp = tmp->next);
+    if (tmp->status == START) {
         my_putstr(START_STR);
         my_putchar('\n');
     }
-    if (amazed->room->status == END) {
+    if (tmp->status == END) {
         my_putstr(END_STR);
         my_putchar('\n');
     }
-    my_putstr(amazed->room->name);
+    my_putstr(tmp->name);
     my_putchar(' ');
-    my_put_nbr(amazed->room->x);
+    my_put_nbr(tmp->x);
     my_putchar(' ');
-    my_put_nbr(amazed->room->y);
+    my_put_nbr(tmp->y);
     my_putchar('\n');
     return OK;
 }
