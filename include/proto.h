@@ -18,5 +18,6 @@ int put_room(amazed_t *amazed, room_status_t *status, char *line);
 int put_tunnel(amazed_t *amazed, char *line);
 int init_matrix(amazed_t *amazed);
 int get_room_pos(char **names, char *name);
+int free_amazed(amazed_t *amazed, int ret);
 
 #endif /* PROTO_H_ */

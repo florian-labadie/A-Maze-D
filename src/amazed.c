@@ -20,8 +20,8 @@ int launch_amazed(void)
 
     init_amazed(&amazed);
     if (parse(&amazed) == KO)
-        return KO;
+        return free_amazed(&amazed, KO);
     if (init_matrix(&amazed) == KO)
-        return KO;
-    return OK;
+        return free_amazed(&amazed, KO);
+    return free_amazed(&amazed, OK);
 }

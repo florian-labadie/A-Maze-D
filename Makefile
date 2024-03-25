@@ -10,6 +10,7 @@ SRC =	 	main.c							\
 			src/amazed.c					\
 			src/matrix.c					\
 			src/display.c					\
+			src/free_amazed.c	\
 			src/parsing/parsing.c			\
 			src/parsing/check_commentary.c	\
 			src/parsing/rooms.c				\
