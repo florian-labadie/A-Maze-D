@@ -23,6 +23,10 @@ static int put_robot(amazed_t *amazed, char *line)
     amazed->nb_robot = my_getnbr(line);
     if (amazed->nb_robot == 0 && line[0] != '0')
         return KO;
+    if (amazed->nb_robot <= 0) {
+        my_put_errstr("The number of robot must be 1 or plus !\n");
+        return KO;
+    }
     return OK;
 }
 

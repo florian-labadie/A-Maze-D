@@ -7,24 +7,37 @@
 
 #include "my.h"
 
+static int check_room_name(char *tmp)
+{
+    for (int i = 0; i == 0 || tmp[i] != '\0'; i += 1) {
+        if (!tmp || alpha_num(tmp[i]) == KO) {
+            my_put_errstr("Your name must be in alpha-numeric characters!\n");
+            return KO;
+        }
+    }
+    return OK;
+}
+
 static int check_room(char *line)
 {
     char *tmp = my_strdup(line);
 
     tmp = my_strtok(tmp, " \t\n");
+    if (check_room_name(tmp) == KO)
+        return KO;
+    tmp = my_strtok(NULL, " \t\n");
     for (int i = 0; i == 0 || tmp[i] != '\0'; i += 1) {
-        if (!tmp || alpha_num(tmp[i]) == KO)
+        if (!tmp || numeric(tmp[i]) == KO) {
+            my_put_errstr("Your x coordonate must be a number !\n");
             return KO;
+        }
     }
     tmp = my_strtok(NULL, " \t\n");
     for (int i = 0; i == 0 || tmp[i] != '\0'; i += 1) {
-        if (!tmp || numeric(tmp[i]) == KO)
+        if (!tmp || numeric(tmp[i]) == KO) {
+            my_put_errstr("Your y coordonate must be a number !\n");
             return KO;
-    }
-    tmp = my_strtok(NULL, " \t\n");
-    for (int i = 0; i == 0 || tmp[i] != '\0'; i += 1) {
-        if (!tmp || numeric(tmp[i]) == KO)
-            return KO;
+        }
     }
     return my_strtok(NULL, " \t\n") != NULL ? KO : OK;
 }

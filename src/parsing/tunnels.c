@@ -13,13 +13,17 @@ static int check_tunnel(char *line)
 
     tmp = my_strtok(tmp, "-");
     for (int i = 0; i == 0 || tmp[i] != '\0'; i += 1) {
-        if (!tmp || alpha_num(tmp[i]) == KO)
+        if (!tmp || alpha_num(tmp[i]) == KO) {
+            my_put_errstr("Your tunnels name must be an alphanumeric !\n");
             return KO;
+        }
     }
     tmp = my_strtok(NULL, " \t\n");
     for (int i = 0; i == 0 || tmp[i] != '\0'; i += 1) {
-        if (!tmp || alpha_num(tmp[i]) == KO)
+        if (!tmp || alpha_num(tmp[i]) == KO) {
+            my_put_errstr("Your tunnels name must be an alphanumeric !\n");
             return KO;
+        }
     }
     return my_strtok(NULL, " \t\n") ? KO : OK;
 }
