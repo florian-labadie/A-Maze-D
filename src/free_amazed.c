@@ -25,8 +25,8 @@ static int free_tunnels(tunnels_t **tunnels)
             free_tunnels(&(*tunnels)->next);
         free((*tunnels)->room1);
         free((*tunnels)->room2);
-        if (tunnels != NULL)
-            free(tunnels);
+        if (*tunnels != NULL)
+            free(*tunnels);
     }
     return OK;
 }
@@ -34,13 +34,11 @@ static int free_tunnels(tunnels_t **tunnels)
 static int free_matrix(matrix_t *matrix)
 {
     if (matrix != NULL) {
-        for (int i = 0; matrix->names != NULL && matrix->names[i] != NULL;
-        i += 1) {
+        for (int i = 0; matrix->names && matrix->names[i]; i += 1) {
             free(matrix->names[i]);
         }
         free(matrix->names);
-        for (int i = 0; matrix->matrix != NULL && i <= matrix->rooms_nbr;
-        i += 1) {
+        for (int i = 0; matrix->matrix && i <= matrix->rooms_nbr; i += 1) {
             free(matrix->matrix[i]);
         }
         free(matrix->matrix);
