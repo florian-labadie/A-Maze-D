@@ -47,15 +47,13 @@ static void recurse(matrix_t *matrix, bfs_t **bfs, int start_room)
     }
 }
 
-static void print_shortest_path(bfs_t *bfs, int end_room)
+static void print_shortest_path(int *parent, int end_room)
 {
-    if (bfs->parent[end_room] != -1)
-        print_shortest_path(bfs, bfs->parent[end_room]);
-    if (bfs->parent[end_room] != -1)
+    if (parent[end_room] != -1)
+        print_shortest_path(parent, parent[end_room]);
+    if (parent[end_room] != -1)
         my_putstr(" -> ");
     my_put_nbr(end_room);
-    if (bfs->parent[end_room] == -1)
-        my_putchar('\n');
 }
 
 int my_bfs(matrix_t *matrix)
@@ -63,5 +61,6 @@ int my_bfs(matrix_t *matrix)
     if (!matrix->bfs)
         set_up_bfs(&matrix->bfs, matrix->rooms_nbr);
     recurse(matrix, &matrix->bfs, matrix->start_room);
+    get_path(matrix, matrix->bfs->parent);
     return 0;
 }

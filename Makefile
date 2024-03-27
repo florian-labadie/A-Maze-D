@@ -15,7 +15,8 @@ SRC =	 	main.c							\
 			src/parsing/check_commentary.c	\
 			src/parsing/rooms.c				\
 			src/parsing/tunnels.c			\
-			src/my_bfs.c
+			src/path.c						\
+			src/my_bfs.c					\
 
 SRCTEST = 	tests/test.c					\
 
