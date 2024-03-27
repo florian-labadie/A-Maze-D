@@ -70,8 +70,10 @@ static int get_rooms(amazed_t *amazed)
             amazed->matrix->end_room = i;
         i++;
     }
-    if (amazed->matrix->start_room < 0 || amazed->matrix->end_room < 0)
+    if (amazed->matrix->start_room < 0 || amazed->matrix->end_room < 0) {
+        my_put_errstr("Error : no START or no END room found\n");
         return KO;
+    }
     return OK;
 }
 
