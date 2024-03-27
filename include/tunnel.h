@@ -10,7 +10,7 @@
 
     #include <stdbool.h>
 
-typedef struct paths_s{
+typedef struct paths_s {
     int *path;
     int path_len;
     struct paths_s *next;
@@ -22,13 +22,13 @@ typedef struct store_s {
     bool *checker;
 } store_t;
 
-typedef struct bfs_s{
+typedef struct bfs_s {
     bool *visited;
     int *queue;
     int *parent;
     int rear;
     int front;
-}  bfs_t;
+} bfs_t;
 
 typedef struct matrix_s {
     char **names;
