@@ -38,6 +38,7 @@ static int malloc_matrix(amazed_t *amazed)
     amazed->matrix->rooms_nbr = len;
     amazed->matrix->matrix = malloc(sizeof(int *) * len);
     amazed->matrix->names = malloc(sizeof(char *) * (len + 1));
+    amazed->matrix->bfs = NULL;
     amazed->matrix->names[len] = NULL;
     amazed->matrix->start_room = -1;
     amazed->matrix->end_room = -1;

@@ -23,5 +23,7 @@ int launch_amazed(void)
         return free_amazed(&amazed, KO);
     if (init_matrix(&amazed) == KO)
         return free_amazed(&amazed, KO);
+    // my_dijkstra(&amazed);
+    my_bfs(amazed.matrix);
     return free_amazed(&amazed, OK);
 }

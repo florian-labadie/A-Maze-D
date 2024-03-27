@@ -42,7 +42,7 @@ static int check_room(char *line)
     return my_strtok(NULL, " \t\n") != NULL ? KO : OK;
 }
 
-static int add_room(room_t **room, char *line, room_status_t status)
+static void add_room(room_t **room, char *line, room_status_t status)
 {
     if ((*room) == NULL) {
         (*room) = malloc(sizeof(room_t));
@@ -51,7 +51,7 @@ static int add_room(room_t **room, char *line, room_status_t status)
         (*room)->y = my_getnbr(my_strtok(NULL, " \t\n"));
         (*room)->status = status;
         (*room)->next = NULL;
-        return OK;
+        return;
     }
     return add_room(&(*room)->next, line, status);
 }

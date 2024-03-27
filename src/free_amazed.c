@@ -34,13 +34,11 @@ static int free_tunnels(tunnels_t **tunnels)
 static int free_matrix(matrix_t *matrix)
 {
     if (matrix != NULL) {
-        for (int i = 0; matrix->names && matrix->names[i]; i += 1) {
+        for (int i = 0; matrix->names && matrix->names[i]; i += 1)
             free(matrix->names[i]);
-        }
         free(matrix->names);
-        for (int i = 0; matrix->matrix && i <= matrix->rooms_nbr; i += 1) {
+        for (int i = 0; matrix->matrix && i < matrix->rooms_nbr; i += 1)
             free(matrix->matrix[i]);
-        }
         free(matrix->matrix);
         if (matrix != NULL) {
             free(matrix);
