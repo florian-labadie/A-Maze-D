@@ -39,7 +39,9 @@ static void add_path(paths_t **path, int *parent, int len)
 {
     if ((*path) == NULL) {
         (*path) = malloc(sizeof(paths_t));
-        (*path)->path = parent;
+        (*path)->path = malloc(sizeof(int) * len);
+        for (int i = 0; i < len; i++)
+            (*path)->path[i] = parent[i];
         (*path)->path_len = len;
         (*path)->next = NULL;
         return;
@@ -59,11 +61,6 @@ int get_path(matrix_t *matrix, int *parent)
     len = path_len(parent, matrix->end_room);
     path = malloc(sizeof(int) * (len));
     put_path(&path, parent, matrix->end_room, len - 1);
-    for (int i = 0; i < len; i++) {
-        my_put_nbr(path[i]);
-        if (i < len - 1)
-            my_putstr(" -> ");
-    }
-    my_putchar('\n');
+    add_path(&matrix->paths, path, len);
     return OK;
 }

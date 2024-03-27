@@ -1,6 +1,7 @@
 *.o
 *.a
 coding-style-reports.log
+mat_mul.py
 .vscode
 laby_gen.pl
 amazed
