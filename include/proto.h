@@ -20,6 +20,7 @@ int init_matrix(amazed_t *amazed);
 int get_room_pos(char **names, char *name);
 int free_amazed(amazed_t *amazed, int ret);
 int get_path(matrix_t *matrix, int *parent);
+int robot_parcour(matrix_t *matrix, int robot_nbr);
 int my_bfs(matrix_t *matrix);
 
 #endif /* PROTO_H_ */

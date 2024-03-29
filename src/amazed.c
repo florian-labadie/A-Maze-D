@@ -24,5 +24,6 @@ int launch_amazed(void)
     if (init_matrix(&amazed) == KO)
         return free_amazed(&amazed, KO);
     my_bfs(amazed.matrix);
+    robot_parcour(amazed.matrix, amazed.nb_robot);
     return free_amazed(&amazed, OK);
 }
