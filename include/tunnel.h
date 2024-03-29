@@ -16,12 +16,6 @@ typedef struct paths_s {
     struct paths_s *next;
 } paths_t;
 
-typedef struct store_s {
-    int *dist;
-    int *parent;
-    bool *checker;
-} store_t;
-
 typedef struct bfs_s {
     bool *visited;
     bool path;
@@ -42,7 +36,6 @@ typedef struct matrix_s {
 
     paths_t *paths;
     bfs_t *bfs;
-    store_t *store;
 } matrix_t;
 
 typedef struct tunnels_s {

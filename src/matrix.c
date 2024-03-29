@@ -29,68 +29,65 @@ static int number_of_rooms(room_t *room)
     return len;
 }
 
-static int malloc_matrix(amazed_t *amazed)
+static int malloc_matrix(matrix_t **matrix, int len)
 {
-    int len = 0;
-
-    len = number_of_rooms(amazed->room);
-    amazed->matrix = malloc(sizeof(matrix_t));
-    amazed->matrix->rooms_nbr = len;
-    amazed->matrix->matrix = malloc(sizeof(int *) * len);
-    amazed->matrix->names = malloc(sizeof(char *) * (len + 1));
-    amazed->matrix->bfs = NULL;
-    amazed->matrix->names[len] = NULL;
-    amazed->matrix->start_room = -1;
-    amazed->matrix->end_room = -1;
-    for (int i = 0; i < amazed->matrix->rooms_nbr; i++) {
-        amazed->matrix->matrix[i] = malloc(sizeof(int) *
-                                            amazed->matrix->rooms_nbr);
-        for (int j = 0; j < amazed->matrix->rooms_nbr; j++)
-            amazed->matrix->matrix[i][j] = 0;
+    (*matrix) = malloc(sizeof(matrix_t));
+    (*matrix)->rooms_nbr = len;
+    (*matrix)->matrix = malloc(sizeof(int *) * len);
+    (*matrix)->names = malloc(sizeof(char *) * (len + 1));
+    (*matrix)->bfs = NULL;
+    (*matrix)->names[len] = NULL;
+    (*matrix)->start_room = -1;
+    (*matrix)->end_room = -1;
+    for (int i = 0; i < (*matrix)->rooms_nbr; i++) {
+        (*matrix)->matrix[i] = malloc(sizeof(int) *
+                                            (*matrix)->rooms_nbr);
+        for (int j = 0; j < (*matrix)->rooms_nbr; j++)
+            (*matrix)->matrix[i][j] = 0;
     }
-    if (!amazed->matrix || !amazed->matrix->names || !amazed->matrix->matrix)
+    if (!(*matrix) || !(*matrix)->names || !(*matrix)->matrix)
         return -KO;
     return len;
 }
 
-static int get_rooms(amazed_t *amazed)
+static int get_rooms(matrix_t **matrix, room_t *room)
 {
     int len = 0;
 
-    if (!amazed->room)
+    if (!room)
         return KO;
-    len = malloc_matrix(amazed);
+    len = malloc_matrix(matrix, number_of_rooms(room));
     if (len == -KO)
         return KO;
-    for (int i = 0; i < len; amazed->room = amazed->room->next) {
-        amazed->matrix->names[i] = my_strdup(amazed->room->name);
-        if (amazed->room->status == START)
-            amazed->matrix->start_room = i;
-        if (amazed->room->status == END)
-            amazed->matrix->end_room = i;
+    for (int i = 0; i < len; room = room->next) {
+        (*matrix)->names[i] = my_strdup(room->name);
+        if (room->status == START)
+            (*matrix)->start_room = i;
+        if (room->status == END)
+            (*matrix)->end_room = i;
         i++;
     }
-    if (amazed->matrix->start_room < 0 || amazed->matrix->end_room < 0) {
+    if ((*matrix)->start_room < 0 || (*matrix)->end_room < 0) {
         my_put_errstr("Error : no START or no END room found\n");
         return KO;
     }
     return OK;
 }
 
-static int put_tunnels_in_matrix(amazed_t *amazed)
+static int put_tunnels_in_matrix(matrix_t **matrix, tunnels_t *tunnels)
 {
     int room1 = -KO;
     int room2 = -KO;
 
-    if (!amazed->tunnels)
+    if (!tunnels)
         return KO;
-    for (; amazed->tunnels; amazed->tunnels = amazed->tunnels->next) {
-        room1 = get_room_pos(amazed->matrix->names, amazed->tunnels->room1);
-        room2 = get_room_pos(amazed->matrix->names, amazed->tunnels->room2);
+    for (; tunnels; tunnels = tunnels->next) {
+        room1 = get_room_pos((*matrix)->names, tunnels->room1);
+        room2 = get_room_pos((*matrix)->names, tunnels->room2);
         if (room1 == -KO || room2 == -KO)
             return KO;
-        amazed->matrix->matrix[room1][room2] += 1;
-        amazed->matrix->matrix[room2][room1] += 1;
+        (*matrix)->matrix[room1][room2] += 1;
+        (*matrix)->matrix[room2][room1] += 1;
     }
     return OK;
 }
@@ -99,9 +96,9 @@ int init_matrix(amazed_t *amazed)
 {
     if (!amazed)
         return KO;
-    if (get_rooms(amazed) == KO)
+    if (get_rooms(&amazed->matrix, amazed->room) == KO)
         return KO;
-    if (put_tunnels_in_matrix(amazed) == KO)
+    if (put_tunnels_in_matrix(&amazed->matrix, amazed->tunnels) == KO)
         return KO;
     return OK;
 }

@@ -61,7 +61,7 @@ int my_bfs(matrix_t *matrix)
     do {
         set_up_bfs(&matrix->bfs, matrix->rooms_nbr);
         recurse(matrix, &matrix->bfs, matrix->start_room);
-        if (get_path(matrix, matrix->bfs->parent))
+        if (get_path(matrix, matrix->bfs->parent) == KO)
             return KO;
     } while (matrix->bfs->path == true);
     return OK;

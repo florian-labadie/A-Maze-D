@@ -32,7 +32,7 @@ static void put_path(int **path, int *parent, int room, int len)
 {
     if (parent[room] != -1)
         put_path(path, parent, parent[room], len - 1);
-    (*path)[len] = room;    
+    (*path)[len] = room;
 }
 
 static void add_path(paths_t **path, int *parent, int len)
@@ -65,8 +65,7 @@ int get_path(matrix_t *matrix, int *parent)
     }
     path = malloc(sizeof(int) * (len));
     put_path(&path, parent, matrix->end_room, len - 1);
-    if (path[0] != matrix->start_room || path[len - 1] != matrix->end_room)
-        return KO;
     add_path(&matrix->paths, path, len);
+    free(path);
     return OK;
 }
