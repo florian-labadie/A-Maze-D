@@ -9,12 +9,17 @@
 
 static void set_up_bfs(bfs_t **bfs, int rooms_nbr)
 {
-    *bfs = malloc(sizeof(bfs_t));
-    (*bfs)->visited = malloc(sizeof(bool) * rooms_nbr);
-    (*bfs)->queue = malloc(sizeof(int) * rooms_nbr);
-    (*bfs)->parent = malloc(sizeof(int) * rooms_nbr);
+    if (!*bfs)
+        *bfs = malloc(sizeof(bfs_t));
+    if (!(*bfs)->visited)
+        (*bfs)->visited = malloc(sizeof(bool) * rooms_nbr);
+    if (!(*bfs)->queue)
+        (*bfs)->queue = malloc(sizeof(int) * rooms_nbr);
+    if (!(*bfs)->parent)
+        (*bfs)->parent = malloc(sizeof(int) * rooms_nbr);
     (*bfs)->rear = -1;
     (*bfs)->front = -1;
+    (*bfs)->path = true;
     for (int i = 0; i < rooms_nbr; i++) {
         (*bfs)->visited[i] = false;
         (*bfs)->queue[i] = 0;
@@ -45,13 +50,19 @@ static void recurse(matrix_t *matrix, bfs_t **bfs, int start_room)
         for (int i = 0; i < matrix->rooms_nbr; i++)
             check_parent(matrix, bfs, i, current_room);
     }
+    if ((*bfs)->parent[current_room] != -1) {
+        matrix->matrix[current_room][(*bfs)->parent[current_room]] = 0;
+        matrix->matrix[(*bfs)->parent[current_room]][current_room] = 0;
+    }
 }
 
 int my_bfs(matrix_t *matrix)
 {
-    if (!matrix->bfs)
+    do {
         set_up_bfs(&matrix->bfs, matrix->rooms_nbr);
-    recurse(matrix, &matrix->bfs, matrix->start_room);
-    get_path(matrix, matrix->bfs->parent);
-    return 0;
+        recurse(matrix, &matrix->bfs, matrix->start_room);
+        if (get_path(matrix, matrix->bfs->parent))
+            return KO;
+    } while (matrix->bfs->path == true);
+    return OK;
 }

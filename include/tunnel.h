@@ -24,6 +24,7 @@ typedef struct store_s {
 
 typedef struct bfs_s {
     bool *visited;
+    bool path;
     int *queue;
     int *parent;
     int rear;
