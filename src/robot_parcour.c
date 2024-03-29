@@ -22,12 +22,12 @@ static int get_robot_pos(int *robot_pos, int robot, int len)
     return pos;
 }
 
-static void print_step(char **names, int robot, int pos)
+static void print_step(char **names, int robot, int pos, matrix_t *matrix)
 {
     my_putchar('P');
     my_put_nbr(robot);
     my_putchar('-');
-    my_putstr(names[pos + 1]);
+    my_putstr(names[matrix->paths->path[pos + 1]]);
     my_putchar(' ');
 }
 
@@ -41,7 +41,7 @@ static void move_robot(matrix_t *matrix, int **robot_pos, int robot,
     if ((*robot_pos)[pos + 1] == - 1 || pos + 1 == len - 1) {
         (*robot_pos)[pos + 1] = robot;
         (*robot_pos)[pos] = - 1;
-        print_step(matrix->names, robot, pos);
+        print_step(matrix->names, robot, pos, matrix);
     }
 }
 
