@@ -20,6 +20,18 @@ SRC =	 	main.c							\
 			src/my_bfs.c					\
 
 SRCTEST = 	tests/test.c					\
+			src/error_handling.c			\
+			src/amazed.c					\
+			src/matrix.c					\
+			src/display.c					\
+			src/free_amazed.c				\
+			src/parsing/parsing.c			\
+			src/parsing/check_commentary.c	\
+			src/parsing/rooms.c				\
+			src/parsing/tunnels.c			\
+			src/path.c						\
+			src/robot_parcour.c				\
+			src/my_bfs.c					\
 
 OBJ = $(SRC:.c=.o)
 
@@ -47,7 +59,7 @@ $(NAME):	$(OBJ)
 buildlib:
 	make -C ./lib/my
 
-buildlibtest:
+buildlibtest: buildlib
 	make -C ./lib/my CFLAGS='$(CFLAGS) --coverage'
 
 buildtest: CFLAGS += --coverage
@@ -82,8 +94,8 @@ valgrind: buildlib $(OBJ)
 unit_tests: buildtest
 
 run_tests:
-	./unit_tests
-	gcovr
+		./unit_tests
+		gcovr
 
 .PHONY: all clean fclean re valgrind unit_tests run_tests cleantest
 		buildlibtest buildtest buildlib

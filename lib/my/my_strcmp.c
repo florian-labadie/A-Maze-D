@@ -9,11 +9,13 @@
 
 int my_strcmp(char const *s1, char const *s2)
 {
-    int len = my_strlen(s1);
-    int len2 = my_strlen(s2);
+    int len = 0;
+    int len2 = 0;
 
     if (!s1 || !s2)
         return KO;
+    len = my_strlen(s1);
+    len2 = my_strlen(s2);
     len = len > len2 ? len : len2;
     for (int i = 0; i < len; i++) {
         if (s1[i] < s2[i])

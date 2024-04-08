@@ -9,23 +9,16 @@ SRC     =	my_putchar.c	\
 			my_put_errchar.c\
 			my_putstr.c		\
 			my_put_errstr.c	\
-			my_revstr.c		\
 			my_strlen.c		\
-			my_revstr.c		\
 			my_putnbr.c		\
 			my_getnbr.c		\
 			my_strcat.c		\
-			my_strncat.c	\
 			my_strcmp.c		\
-			my_strncmp.c	\
 			my_strcpy.c		\
-			my_strncpy.c	\
 			my_strdup.c		\
-			my_strndup.c	\
 			my_strcat.c		\
 			my_strtok.c		\
 			my_arraylen.c	\
-			my_putarray.c	\
 			my_arraydup.c	\
 			letter_checker.c\
 

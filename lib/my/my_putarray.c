@@ -7,10 +7,11 @@
 
 #include "my.h"
 
-void my_putarray(char const *const *array)
+int my_putarray(char const *const *array)
 {
     if (!array)
-        return;
+        return 84;
     for (int i = 0; array[i] != NULL; i += 1)
         my_putstr(array[i]);
+    return 0;
 }
