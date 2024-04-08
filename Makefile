@@ -93,7 +93,7 @@ valgrind: buildlib $(OBJ)
 
 unit_tests: buildtest
 
-run_tests:
+tests_run: unit_tests
 		./unit_tests
 		gcovr
 
