@@ -71,14 +71,12 @@ static int is_a_room(char **names, char *room)
 
 static int is_good_room(char **names, char *room)
 {
+    for (int i = 0; i == 0 || room[i] != '\0'; i += 1) {
+        if (!room || alpha_num(room[i]) == KO)
+            return KO;
+    }
     if (is_a_room(names, room) == KO)
         return KO;
-    for (int i = 0; i == 0 || room[i] != '\0'; i += 1) {
-        if (!room || alpha_num(room[i]) == KO) {
-            my_put_errstr("Your tunnels name must be an alphanumeric !\n");
-            return KO;
-        }
-    }
     return OK;
 }
 
@@ -86,12 +84,13 @@ static int check_tunnel(char **names, char *line)
 {
     char *tmp = my_strdup(line);
 
+    for (int i = 0; i < 2; i++) {
     tmp = my_strtok(tmp, "-");
-    if (is_good_room(names, tmp) == KO)
+    if (is_good_room(names, tmp) == KO) {
+        my_put_errstr("Your tunnels name must be an actual room name !\n");
         return KO;
-    tmp = my_strtok(NULL, " \t\n");
-    if (is_good_room(names, tmp) == KO)
-        return KO;
+    }
+    }
     return my_strtok(NULL, " \t\n") ? KO : OK;
 }
 
