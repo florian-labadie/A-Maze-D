@@ -5,8 +5,9 @@
 ## solostumper
 ##
 
-SRC =	 	main.c							\
-			src/error_handling.c			\
+MAIN =		main.c							\
+
+SRC =		src/error_handling.c			\
 			src/amazed.c					\
 			src/matrix.c					\
 			src/display.c					\
@@ -19,19 +20,8 @@ SRC =	 	main.c							\
 			src/robot_parcour.c				\
 			src/my_bfs.c					\
 
-SRCTEST = 	tests/test.c					\
-			src/error_handling.c			\
-			src/amazed.c					\
-			src/matrix.c					\
-			src/display.c					\
-			src/free_amazed.c				\
-			src/parsing/parsing.c			\
-			src/parsing/check_commentary.c	\
-			src/parsing/rooms.c				\
-			src/parsing/tunnels.c			\
-			src/path.c						\
-			src/robot_parcour.c				\
-			src/my_bfs.c					\
+SRCTEST = 	tests/test_lib.c				\
+			tests/test_amazed.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -64,7 +54,7 @@ buildlibtest: buildlib
 
 buildtest: CFLAGS += --coverage
 buildtest: buildlibtest $(OBJTEST)
-	$(CC) $(LDFLAGS) -o $(NAMETEST) $(OBJTEST) $(LDLIBS)	\
+	$(CC) $(CPPFLAGS) $(LDFLAGS) -o $(NAMETEST) $(OBJTEST) $(SRC) $(LDLIBS)	\
 	--coverage -lcriterion
 
 clean:
@@ -97,5 +87,5 @@ tests_run: unit_tests
 		./unit_tests
 		gcovr
 
-.PHONY: all clean fclean re valgrind unit_tests run_tests cleantest
+.PHONY: all clean fclean re valgrind unit_tests tests_run cleantest
 		buildlibtest buildtest buildlib
