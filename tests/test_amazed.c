@@ -21,7 +21,6 @@ Test (amazed, check_amzed_is_ok, . init = redirect_all_std)
     int result = 0;
     FILE *file = cr_get_redirected_stdin();
     char *str = "9\n##start\n0 0 0\n1 7 5\n2 15 20\n3 15 66\n4 15 66\n##end\n5 15 66\n0-1\n0-2\n1-3\n2-4\n3-5\n4-5\n4-1\n2-5\n";
-    size_t len = 0;
 
     fwrite(str, strlen(str), 1, file);
     fclose(file);
