@@ -27,5 +27,4 @@ Test (amazed, check_amzed_is_ok, . init = redirect_all_std)
     fclose(file);
     result = launch_amazed();
     cr_assert_eq(result, 0);
-
 }

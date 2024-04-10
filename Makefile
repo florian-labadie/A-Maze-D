@@ -23,7 +23,7 @@ SRC =		src/error_handling.c			\
 SRCTEST = 	tests/test_lib.c				\
 			tests/test_amazed.c
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)	$(MAIN:.c=.o)
 
 OBJTEST = $(SRCTEST:.c=.o)
 
