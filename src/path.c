@@ -32,7 +32,6 @@ static void put_path(int **path, int *parent, int room, int len)
 {
     if (parent[room] != -1)
         put_path(path, parent, parent[room], len - 1);
-    printf("%d ->", room);
     (*path)[len] = room;
 }
 
