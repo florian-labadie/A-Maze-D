@@ -85,7 +85,6 @@ unit_tests: buildtest
 
 tests_run: unit_tests
 		./unit_tests
-		gcovr
 
 .PHONY: all clean fclean re valgrind unit_tests tests_run cleantest
 		buildlibtest buildtest buildlib
