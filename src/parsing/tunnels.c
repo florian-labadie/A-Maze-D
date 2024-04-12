@@ -54,10 +54,8 @@ static int get_rooms(matrix_t **matrix, room_t *room)
             (*matrix)->end_room = i;
         i++;
     }
-    if ((*matrix)->start_room < 0 || (*matrix)->end_room < 0) {
-        my_put_errstr("Error : no START or no END room found\n");
-        return KO;
-    }
+    if ((*matrix)->start_room < 0 || (*matrix)->end_room < 0)
+        return my_put_errstr("Error : no START or no END room found\n");
     return OK;
 }
 
@@ -111,8 +109,11 @@ int put_tunnel(amazed_t *amazed, char *line)
 {
     if (!amazed)
         return KO;
+    if (!amazed->room)
+        return my_put_errstr("Error : No room\n");
     if (!amazed->matrix)
-        get_rooms(&amazed->matrix, amazed->room);
+        if (get_rooms(&amazed->matrix, amazed->room) == KO)
+            return KO;
     if (check_tunnel(amazed->matrix->names, line) == KO)
         return KO;
     add_tunnel(&amazed->tunnels, line);

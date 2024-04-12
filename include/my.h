@@ -27,7 +27,7 @@
 int error_handling(int argc, char const *const *argv);
 
 int my_putchar(char c);
-void my_put_errchar(char c);
+int my_put_errchar(char c);
 int my_putstr(char const *str);
 int my_put_errstr(char const *str);
 int my_strlen(char const *str);

@@ -15,5 +15,5 @@ int my_put_errstr(char const *str)
         my_put_errchar(str[i]);
         i += 1;
     }
-    return (i);
+    return 84;
 }

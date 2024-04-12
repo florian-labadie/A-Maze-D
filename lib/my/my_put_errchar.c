@@ -7,7 +7,8 @@
 
 #include <unistd.h>
 
-void my_put_errchar(char c)
+int my_put_errchar(char c)
 {
     write(2, &c, 1);
+    return 84;
 }
