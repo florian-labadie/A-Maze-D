@@ -115,5 +115,6 @@ P3-1
 
 - Labadie Florian ([GitHub](https://github.com/florian-labadie))
 - Axel Lavrador ([GitHub](https://github.com/Oursegamin))
+- Baptiste Blambert ([GitHub](https://github.com/baptistebd))
 
 ---
